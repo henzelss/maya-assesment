@@ -21,13 +21,20 @@ file { '/home/monitor/scripts':
   mode   => '0755',
 }
 
+# Download memory_check script
+exec { 'download_memory_check':
+  command => 'wget -O /home/monitor/scripts/memory_check https://raw.githubusercontent.com/henzelss/memory-check-script/main/memorycheck.sh',
+  creates => '/home/monitor/scripts/memory_check',
+  require => File['/home/monitor/scripts'],
+}
+
+
 file { '/home/monitor/src':
   ensure => directory,
   owner  => 'monitor',
   group  => 'monitor',
   mode   => '0755',
 }
-
 
 # Soft link
 file { '/home/monitor/src/my_memory_check':
@@ -37,3 +44,9 @@ file { '/home/monitor/src/my_memory_check':
   group  => 'monitor',
 }
 
+# Cron 
+cron { 'memory_check':
+  command => '/home/monitor/src/my_memory_check',
+  user    => 'monitor',
+  minute  => '*/10',
+}
