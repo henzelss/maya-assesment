@@ -1,3 +1,5 @@
+class mayatest {
+
  #Initialized packages
 
  package { ['vim', 'curl', 'git']:
@@ -50,3 +52,19 @@ cron { 'memory_check':
   user    => 'monitor',
   minute  => '*/10',
 }
+
+# Set timezone
+file { '/etc/localtime':
+  ensure => link,
+  target => '/usr/share/zoneinfo/Asia/Manila',
+}
+
+# Set hostname
+exec { 'set_hostname':
+  command => 'hostname bpx.server.local',
+  unless  => 'hostname | grep bpx.server.local',
+}
+
+}
+
+include mayatest
