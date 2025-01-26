@@ -54,15 +54,17 @@ class deploy-site {
 
   # Set timezone (using symlink method)
   exec { 'set_timezone':
-    command => 'ln -sf /usr/share/zoneinfo/Asia/Manila /etc/localtime',
-    unless  => 'test "$(readlink /etc/localtime)" = "/usr/share/zoneinfo/Asia/Manila"',
+    command => '/bin/ln -sf /usr/share/zoneinfo/Asia/Manila /etc/localtime',
+    unless  => '/usr/bin/test "$(readlink /etc/localtime)" = "/usr/share/zoneinfo/Asia/Manila"',
   }
+
 
   # Set hostname
   exec { 'set_hostname':
-    command => 'hostname bpx.server.local',
-    unless  => 'hostname | grep bpx.server.local',
+    command => '/bin/hostname bpx.server.local',
+    unless  => '/bin/hostname | /bin/grep bpx.server.local',
   }
+
 
 }
 
