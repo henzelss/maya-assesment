@@ -1,4 +1,4 @@
-class mayatest {
+class deploy-site {
 
  #Initialized packages
 
@@ -67,4 +67,4 @@ exec { 'set_hostname':
 
 }
 
-include mayatest
+include deploy-site
