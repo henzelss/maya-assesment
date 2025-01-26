@@ -55,7 +55,7 @@ class deploy-site {
   # Set timezone (using symlink method)
   exec { 'set_timezone':
     command => 'ln -sf /usr/share/zoneinfo/Asia/Manila /etc/localtime',
-    unless  => 'test "$(readlink /etc/localtime)" = "/usr/share/zoneinfo/Asia/Manila"',
+    unless  => '/bin/test "$(readlink /etc/localtime)" = "/usr/share/zoneinfo/Asia/Manila"',
   }
 
   # Set hostname
