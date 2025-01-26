@@ -25,7 +25,7 @@ file { '/home/monitor/scripts':
 
 # Download memory_check script
 exec { 'download_memory_check':
-  command => 'wget -O /home/monitor/scripts/memory_check https://raw.githubusercontent.com/henzelss/memory-check-script/main/memorycheck.sh',
+  command => '/usr/bin/wget -O /home/monitor/scripts/memory_check https://raw.githubusercontent.com/henzelss/memory-check-script/main/memorycheck.sh',
   creates => '/home/monitor/scripts/memory_check',
   require => File['/home/monitor/scripts'],
 }
