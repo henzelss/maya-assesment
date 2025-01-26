@@ -61,9 +61,10 @@ class deploy-site {
 
   # Set hostname
   exec { 'set_hostname':
-    command => 'hostname bpx.server.local',
-    unless  => 'hostname | grep bpx.server.local',
+    command => '/bin/hostname bpx.server.local',
+    unless  => '/bin/hostname | /bin/grep bpx.server.local',
   }
+
 
 }
 
